@@ -12,5 +12,5 @@ Usage:
 
     $ python getPATSTAT.py
     
-If you prefer, an alternative configuration file can be specified with the `-c` flag. You can also modify the destination directory in the command line `python getPATSTAT.py -p <dest_path>``
+If you prefer, an alternative configuration file can be specified with the `-c` flag. You can also modify the destination directory in the command line `python getPATSTAT.py -p <dest_path>`
 
