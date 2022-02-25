@@ -1,6 +1,6 @@
 # getPATSTAT
 
-Download latest version of PATSTAT using REST API access. ZIP files are donwloaded, uncompressed, and saved target directory.
+Download latest version of PATSTAT Global using REST API access. ZIP files are donwloaded, uncompressed, and saved target directory.
 
 Usage:
 
