@@ -1,0 +1,8 @@
+[creds]
+#PATSTAT credentials
+user =
+pass =
+
+[data]
+#destination folder
+path = /export/data_ml4ds/IntelComp/Datasets/patstat/rawdata
