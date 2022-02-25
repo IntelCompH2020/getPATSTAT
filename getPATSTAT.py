@@ -16,9 +16,6 @@ import zipfile
 import io
 from pathlib import Path
 
-import ipdb
-
-
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Download PATSTAT products using REST API')
@@ -105,5 +102,3 @@ if __name__ == "__main__":
         r = s.get(url)
     else:
         print('Credentials are not valid')
-
-    ipdb.set_trace()
