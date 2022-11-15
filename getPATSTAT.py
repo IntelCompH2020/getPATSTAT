@@ -32,15 +32,9 @@ def print_status(act_msg, err_msg, resp):
 
 if __name__ == "__main__":
     # Args
-    arg_parser = argparse.ArgumentParser(
-        description="Download PATSTAT products using REST API"
-    )
-    arg_parser.add_argument(
-        "-c", "--config", help="Configuration file to use", default="config.cf"
-    )
-    arg_parser.add_argument(
-        "-p", "--path", help="Path where the datasets will be downloaded"
-    )
+    arg_parser = argparse.ArgumentParser(description="Download PATSTAT products using REST API")
+    arg_parser.add_argument("-c", "--config", help="Configuration file to use", default="config.cf")
+    arg_parser.add_argument("-p", "--path", help="Path where the datasets will be downloaded")
     args = arg_parser.parse_args()
 
     # Make sure a valid a configuration file is available
@@ -97,15 +91,13 @@ if __name__ == "__main__":
             sys.exit()
         product = product[0]
         productID = product["id"]
-        r = s.get(f"{base_uri}{productID}")
+        r = s.get(f"{base_uri}{productID}", headers={"Authorization": f"{token_type} {access_token}"})
         print_status("Get product", "Invalid subscription product", r)
         data_dict = json.loads(r.content)
 
         # Filter most recent
         most_recent = sorted(
-            data_dict["deliveries"],
-            key=lambda x: parser.parse(x["deliveryPublicationDatetime"]),
-            reverse=True,
+            data_dict["deliveries"], key=lambda x: parser.parse(x["deliveryPublicationDatetime"]), reverse=True,
         )[0]
         deliveryId = most_recent["deliveryId"]
 
@@ -125,7 +117,8 @@ if __name__ == "__main__":
                 print(f'Downloading: {file["fileName"]}')
                 print(file)
                 r = s.get(
-                    f"{base_uri}{productID}/delivery/{deliveryId}/file/{fileId}/download"
+                    f"{base_uri}{productID}/delivery/{deliveryId}/file/{fileId}/download",
+                    headers={"Authorization": f"{token_type} {access_token}"},
                 )
                 z = zipfile.ZipFile(io.BytesIO(r.content))
                 z.extractall(version_path)
